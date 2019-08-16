@@ -19,7 +19,10 @@ if you are using Windows install webpack, webpack-cli, webpack-dev-server, and w
 `npm install -g webpack-node-externals --save-dev`
 
 
-`truffle compile`
+`truffle compile` or `truffle compile -all`
+
+I used Ganache 2.0.1 not truffle develop or Ganache-cli
+Thus, the port is 7545
 
 ## Develop Client
 

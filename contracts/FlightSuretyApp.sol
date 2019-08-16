@@ -192,7 +192,7 @@ contract FlightSuretyApp {
     * @dev Passengers may pay up to 1 ether for purchasing flight insurance.
     *
     */
-    function PurchageFlightInsurance(
+    function purchageFlightInsurance(
                                     address airline,
                                     string flight,
                                     uint256 timestamp

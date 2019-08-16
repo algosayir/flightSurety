@@ -53,4 +53,25 @@ export default class Contract {
                 callback(error, payload);
             });
     }
+    
+    purchageFlightInsurance(flight, insurace_value, callback) {
+        //purchageFlightInsurance(
+        //     address airline,
+        //     string flight,
+        //     uint256 timestamp
+        // )
+        let self = this;
+        let payload = {
+            airline: self.airlines[0],
+            flight: flight,
+            timestamp: Math.floor(Date.now() / 1000)
+        } 
+        console.log("Here PFI function");
+        self.flightSuretyApp.methods
+            .purchageFlightInsurance(payload.airline, payload.flight, payload.timestamp)
+            .send({ from: self.owner, value: insurace_value}, (error, result) => {
+                console.log(error);
+                callback(error, payload);
+        });
+    }
 }

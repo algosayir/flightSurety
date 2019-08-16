@@ -222,7 +222,7 @@ contract('Flight Surety Tests', async (accounts) => {
 
     //ACT
     try{
-        await config.flightSuretyApp.PurchageFlightInsurance(config.firstAirline,flight,time,{from: aPassenger});
+        await config.flightSuretyApp.purchageFlightInsurance(config.firstAirline,flight,time,{from: aPassenger});
         success = true;
     } catch(e){
         sucess = false;
