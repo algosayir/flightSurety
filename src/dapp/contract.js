@@ -47,6 +47,7 @@ export default class Contract {
             flight: flight,
             timestamp: Math.floor(Date.now() / 1000)
         } 
+        console.log(payload);
         self.flightSuretyApp.methods
             .fetchFlightStatus(payload.airline, payload.flight, payload.timestamp)
             .send({ from: self.owner}, (error, result) => {
@@ -66,12 +67,34 @@ export default class Contract {
             flight: flight,
             timestamp: Math.floor(Date.now() / 1000)
         } 
-        console.log("Here PFI function");
+        //console.log("Here PFI function");
         self.flightSuretyApp.methods
             .purchageFlightInsurance(payload.airline, payload.flight, payload.timestamp)
             .send({ from: self.owner, value: insurace_value}, (error, result) => {
                 console.log(error);
                 callback(error, payload);
+        });
+    }
+
+    updateFlightStatus(callback) {
+        //Please don't blame me for web3.eth error of handling events:
+        //Error: The current provider doesn't support subscriptions: HttpProvider
+        this.flightSuretyApp.events.FlightStatusInfo({
+
+            fromBlock: 0
+
+        }, (error, ev) => {
+            if (error) {
+
+                console.log(error);
+
+                callback(error);
+            }
+
+        }).on('data', e => {
+
+            callback(null, e.returnValues);
+
         });
     }
 }

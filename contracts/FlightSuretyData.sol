@@ -14,8 +14,10 @@ contract FlightSuretyData {
 
     //Airlines
     struct Airline{
+        string name;
         bool isRegistered;
         bool isFunded;
+        uint256 funds;
     }
 
     uint registeredAirlinesCount;
@@ -47,9 +49,9 @@ contract FlightSuretyData {
                                 public
     {
         contractOwner = msg.sender;
-
+        Airline memory a = Airline("SV",true,false,0);
         //Add first airline when contract is deployed
-        airlines[firstAirline].isRegistered = true;
+        airlines[firstAirline] = a;
         registeredAirlinesCount = 1;
     }
 

@@ -16,12 +16,17 @@ import './flightsurety.css';
             display('Operational Status', 'Check if contract is operational', [ { label: 'Operational Status', error: error, value: result} ]);
         });
     
+        // Read transaction
+        contract.updateFlightStatus((error, result) => {
+            console.log(error,result);
+            display('Flight Status', 'Flight stutus update', [ { label: 'Flight Status', error: error, value: "result.flight + ' ' + result.status"} ]);
+        });
 
         // User-submitted transaction
         DOM.elid('purchase-insurance').addEventListener('click', () => {
             let flight = DOM.elid('flights-list-insurance').value;
             let insurance_value = DOM.elid('insurance-value').value;
-            console.log("I am here");
+            //console.log("I am here");
             // Write transaction
             contract.purchageFlightInsurance(flight, insurance_value, (error, result) => {
                 display('Purchase Insurance', 'Purchase Insurance', [ { label: 'Purchase Insurance', error: error, value: result.flight + ' ' + result.timestamp} ]);
@@ -36,6 +41,7 @@ import './flightsurety.css';
             });
         })
     
+        
     });
     
 
